@@ -1,0 +1,13 @@
+{% extends 'taxes/base.html' %}
+{% block title %}Détail Taxe{% endblock %}
+{% block content %}
+<h2>{{ taxe.nom }}</h2>
+<p><strong>Catégorie :</strong> {{ taxe.categorie }}</p>
+<p>{{ taxe.description }}</p>
+<p><strong>Montant :</strong> {{ taxe.montant }} €</p>
+<form method="post" action="{% url 'panier' %}">
+    {% csrf_token %}
+    <input type="hidden" name="taxe_id" value="{{ taxe.id }}">
+    <button class="btn btn-success">Ajouter au panier</button>
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'taxes/base.html' %}
+{% block title %}Mon Panier{% endblock %}
+{% block content %}
+<h2>Mon panier</h2>
+<ul class="list-group mb-3">
+    {% for taxe in taxes %}
+    <li class="list-group-item d-flex justify-content-between">
+        {{ taxe.nom }}
+        <span>{{ taxe.montant }} €</span>
+    </li>
+    {% empty %}
+    <li class="list-group-item">Aucune taxe dans votre panier.</li>
+    {% endfor %}
+</ul>
+<p><strong>Total :</strong> {{ total }} €</p>
+{% if taxes %}
+<form method="post" action="{% url 'payer' %}">
+    {% csrf_token %}
+    <button class="btn btn-primary">Payer</button>
+</form>
+{% endif %}
+{% endblock %}

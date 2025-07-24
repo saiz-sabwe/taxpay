@@ -1,0 +1,23 @@
+{% extends 'taxes/base.html' %}
+{% block title %}Mes paiements{% endblock %}
+{% block content %}
+<h2>Historique de Paiements</h2>
+<table class="table table-bordered">
+    <thead><tr><th>Date</th><th>Montant</th><th>Taxes</th></tr></thead>
+    <tbody>
+    {% for paiement in paiements %}
+    <tr>
+        <td>{{ paiement.date|date:"d/m/Y H:i" }}</td>
+        <td>{{ paiement.montant_total }} €</td>
+        <td>
+            <ul>
+                {% for taxe in paiement.taxes.all %}
+                <li>{{ taxe.nom }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

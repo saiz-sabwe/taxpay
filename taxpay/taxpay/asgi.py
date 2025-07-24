@@ -1,0 +1,1 @@
+application = None  # ASGI support non utilisé dans cet exemple

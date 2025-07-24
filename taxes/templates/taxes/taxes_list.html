@@ -1,0 +1,19 @@
+{% extends 'taxes/base.html' %}
+{% block title %}Catalogue des Taxes{% endblock %}
+{% block content %}
+<h2>Catalogue des Taxes</h2>
+<div class="row">
+    {% for taxe in taxes %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ taxe.nom }}</h5>
+                <p class="card-text">{{ taxe.description|truncatewords:20 }}</p>
+                <p><strong>{{ taxe.montant }} €</strong></p>
+                <a href="{% url 'tax_detail' taxe.pk %}" class="btn btn-outline-primary">Détails</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
